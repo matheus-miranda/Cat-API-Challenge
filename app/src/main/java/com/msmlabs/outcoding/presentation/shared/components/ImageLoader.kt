@@ -7,7 +7,10 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideSubcomposition
 import com.bumptech.glide.integration.compose.RequestState
@@ -18,18 +21,21 @@ import com.msmlabs.outcoding.R
 fun ImageLoader(
     url: String,
     modifier: Modifier = Modifier,
-    contentDescription: String? = null,
+    cntntDescription: String? = null,
 ) {
+    val context = LocalContext.current
     GlideSubcomposition(
         model = url,
-        modifier = modifier,
+        modifier = modifier.semantics {
+            contentDescription = context.getString(R.string.cat_image)
+        },
     ) {
         when (state) {
             RequestState.Loading -> CircularProgressIndicator()
 
             is RequestState.Success -> Image(
                 painter = painter,
-                contentDescription = contentDescription,
+                contentDescription = cntntDescription,
                 contentScale = ContentScale.Crop,
             )
 

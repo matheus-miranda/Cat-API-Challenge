@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">The Cat API</string>
     <string name="back">Back</string>
+    <string name="loading">Loading</string>
+    <string name="cat_image">Cat image</string>
 
     <!-- Error messages -->
     <string name="general_error">An error occurred, please try again later</string>

@@ -23,6 +23,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -123,6 +125,8 @@ private fun CatListItem(
     onCatClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+
     Card(
         onClick = { onCatClicked.invoke(cat.id) },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer)
@@ -134,10 +138,11 @@ private fun CatListItem(
         ) {
             ImageLoader(
                 url = cat.imageUrl,
-                contentDescription = null,
+                cntntDescription = null,
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(CircleShape),
+                    .clip(CircleShape)
+                    .semantics { contentDescription = context.getString(R.string.cat_image) },
             )
             Column(Modifier.padding(start = 8.dp)) {
                 Text(text = cat.breeds[0].name, fontWeight = FontWeight.Bold, maxLines = 1)
