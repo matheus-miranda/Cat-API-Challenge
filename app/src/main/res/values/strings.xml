@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">The Cat API</string>
+    <string name="back">Back</string>
+
+    <!-- Error messages -->
+    <string name="general_error">An error occurred, please try again later</string>
+    <string name="connection_error">Please check your internet connection and try again</string>
+    <string name="server_error">A server error occurred, please try again later</string>
+    <string name="error_loading_image">Error loading image</string>
+</resources>
