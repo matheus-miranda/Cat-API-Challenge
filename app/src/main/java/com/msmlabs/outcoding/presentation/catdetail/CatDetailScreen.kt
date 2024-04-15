@@ -38,6 +38,7 @@ import com.msmlabs.outcoding.domain.model.Cat
 import com.msmlabs.outcoding.presentation.shared.components.ClickableUrl
 import com.msmlabs.outcoding.presentation.shared.components.ImageLoader
 import com.msmlabs.outcoding.presentation.shared.components.LoadingIndicator
+import com.msmlabs.outcoding.ui.theme.OutcodingTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -196,6 +197,7 @@ private fun CatDetailScreenPreview() {
             )
         )
     )
-
-    CatDetailScreen(DetailUiState.Success(cat), navigateUp = {}, onShowSnackBar = {})
+    OutcodingTheme {
+        CatDetailScreen(DetailUiState.Success(cat), navigateUp = {}, onShowSnackBar = {})
+    }
 }
