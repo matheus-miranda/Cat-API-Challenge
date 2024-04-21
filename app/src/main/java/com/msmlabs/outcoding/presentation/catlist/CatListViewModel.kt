@@ -37,7 +37,7 @@ class CatListViewModel @Inject constructor(
         }
     }.stateIn(
         viewModelScope,
-        SharingStarted.WhileSubscribed(5_000),
+        SharingStarted.Lazily,
         ListUiState.Loading
     )
 }
