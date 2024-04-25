@@ -1,17 +1,14 @@
 package com.msmlabs.outcoding.catdetail
 
 import androidx.activity.ComponentActivity
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import com.msmlabs.outcoding.R
-import com.msmlabs.outcoding.domain.model.Breed
-import com.msmlabs.outcoding.domain.model.Cat
-import com.msmlabs.outcoding.presentation.catdetail.CatDetailScreen
+import com.msmlabs.outcoding.catdetail.CatDetailScreenTestHelper.successUiState
 import com.msmlabs.outcoding.presentation.catdetail.DetailUiState
-import org.junit.Before
+import com.msmlabs.outcoding.stringResource
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,16 +17,8 @@ class CatDetailScreenTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-    private lateinit var detailLoading: String
-    private lateinit var detailImage: String
-
-    @Before
-    fun setup() {
-        composeTestRule.activity.apply {
-            detailLoading = getString(R.string.loading)
-            detailImage = getString(R.string.cat_image)
-        }
-    }
+    private val detailLoading by composeTestRule.stringResource(R.string.loading)
+    private val detailImage by composeTestRule.stringResource(R.string.cat_image)
 
     @Test
     fun whenScreenIsLoading_showLoadingWheel() {
@@ -43,7 +32,7 @@ class CatDetailScreenTest {
         composeTestRule.setContent { CatDetailScreen(uiState = successUiState) }
 
         composeTestRule.run {
-            onNodeWithContentDescription(detailImage)
+            onNodeWithContentDescription(detailImage).assertExists()
             onNodeWithText("Exotic Shorthair").assertIsDisplayed()
             onNodeWithText("The Exotic Shorthair is a gentle friendly cat that has the same personality as the Persian.").assertIsDisplayed()
             onNodeWithText("Origin: United States").assertIsDisplayed()
@@ -52,30 +41,4 @@ class CatDetailScreenTest {
             onNodeWithText("http://en.wikipedia.org").assertIsDisplayed()
         }
     }
-
-    @Composable
-    fun CatDetailScreen(uiState: DetailUiState) {
-        CatDetailScreen(
-            uiState = uiState,
-            navigateUp = {}) {
-        }
-    }
 }
-
-private val successUiState = DetailUiState.Success(
-    Cat(
-        id = "dVujvBqnu",
-        imageUrl = "https://cdn2.thecatapi.com/images/dVujvBqnu.jpg",
-        breeds = listOf(
-            Breed(
-                name = "Exotic Shorthair",
-                description = "The Exotic Shorthair is a gentle friendly cat that has the same personality as the Persian.",
-                temperament = "Affectionate, Sweet, Loyal, Quiet, Peaceful",
-                vcaHospitalsUrl = null,
-                origin = "United States",
-                lifeSpan = "12 - 15",
-                wikipediaUrl = "http://en.wikipedia.org"
-            )
-        )
-    )
-)

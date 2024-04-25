@@ -129,7 +129,8 @@ private fun CatListItem(
 
     Card(
         onClick = { onCatClicked.invoke(cat.id) },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        modifier = Modifier.semantics { contentDescription = "CardView" }
     ) {
         Row(
             modifier = modifier
