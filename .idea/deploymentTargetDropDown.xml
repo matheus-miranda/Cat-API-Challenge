@@ -8,9 +8,6 @@
       <entry key="CatDetailScreenTest">
         <State />
       </entry>
-      <entry key="CatListScreenTest">
-        <State />
-      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -26,9 +23,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-04-09T02:09:48.999654Z" />
         </State>
-      </entry>
-      <entry key="whenScreenIsLoading_showLoadingWheel()">
-        <State />
       </entry>
       <entry key="whenScreenLoadsSuccessfully_showContent()">
         <State />
