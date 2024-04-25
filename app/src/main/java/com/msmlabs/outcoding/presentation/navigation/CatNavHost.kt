@@ -1,6 +1,7 @@
 package com.msmlabs.outcoding.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.msmlabs.outcoding.presentation.catdetail.navigation.catDetailScreen
@@ -12,9 +13,8 @@ import com.msmlabs.outcoding.presentation.catlist.navigation.catListScreen
 fun CatNavHost(
     onShowSnackBar: suspend (String) -> Unit,
     startDestination: String = CAT_LIST_ROUTE,
+    navController: NavHostController = rememberNavController()
 ) {
-    val navController = rememberNavController()
-
     NavHost(navController = navController, startDestination = startDestination) {
         catListScreen(
             onShowSnackBar = onShowSnackBar,
